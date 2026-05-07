@@ -4,10 +4,16 @@ import AtividadeForm from './components/AtividadeForm';
 import Atividade from './components/Atividade';
 import AtividadeLista from './components/AtividadeLista';
 import api from './api/atividade'
+import Button from 'react-bootstrap/Button'
+import Modal from 'react-bootstrap/Modal'
 
 function App() {
+    const [show, setShow] = useState(false);
     const [atividades, setAtividades] = useState([]);
     const [atividade, setAtividade] = useState({ id: 0 });
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
     const pegaTodasAtividades = async () => {
         const response = await api.get('atividade');
@@ -71,8 +77,28 @@ function App() {
                 deletarAtividade={deletarAtividade}
                 pegarAtividade={pegarAtividade}
             />
+
+            <Button variant="primary" onClick={handleShow}>
+                Launch demo modal
+            </Button>
+
+            <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Modal heading</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>Woohoo, you are reading this text in a modal!</Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={handleClose}>
+                        Close
+                    </Button>
+                    <Button variant="primary" onClick={handleClose}>
+                        Save Changes
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+      
         </>
     );
 }
 
-export default App
+export default App;
