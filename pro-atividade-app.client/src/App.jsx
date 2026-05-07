@@ -64,37 +64,34 @@ function App() {
 
     return (
         <>
-            <AtividadeForm
-                addAtividades={addAtividades}
-                cancelarAtividade={cancelarAtividade}
-                atualizaAtividade={atualizaAtividade}
-                ativSelecionada={atividade}
-                atividades={atividades}
-            />
-
+            <div className="d-flex justify-content-between align-items-end mt-2 pb-3 border-bottom border-2">
+                <h2 className="m-0 p-0">Atividade {atividade.id !== 0 ? atividade.id : ''}</h2>
+                <Button variant="outline-secondery" onClick={handleShow}>
+                    <i className="fas fa-plus "></i>
+                </Button>
+            </div>
+ 
             <AtividadeLista
                 atividades={atividades}
                 deletarAtividade={deletarAtividade}
                 pegarAtividade={pegarAtividade}
             />
 
-            <Button variant="primary" onClick={handleShow}>
-                Launch demo modal
-            </Button>
-
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Modal heading</Modal.Title>
+                    <Modal.Title>
+                       Atividade { atividade.id !== 0 ? atividade.id : ''}
+                    </Modal.Title>
                 </Modal.Header>
-                <Modal.Body>Woohoo, you are reading this text in a modal!</Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
-                        Close
-                    </Button>
-                    <Button variant="primary" onClick={handleClose}>
-                        Save Changes
-                    </Button>
-                </Modal.Footer>
+                <Modal.Body>
+                    <AtividadeForm
+                        addAtividades={addAtividades}
+                        cancelarAtividade={cancelarAtividade}
+                        atualizaAtividade={atualizaAtividade}
+                        ativSelecionada={atividade}
+                        atividades={atividades}
+                    />
+                </Modal.Body>
             </Modal>
       
         </>
