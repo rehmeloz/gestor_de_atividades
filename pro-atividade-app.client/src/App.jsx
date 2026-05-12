@@ -19,6 +19,11 @@ function App() {
         return response.data;
     }
 
+    const novaAtividade = () => {
+        setAtividade({ id: 0 });
+        handleAtividadeModal();
+    }
+
     useEffect(() => {
         const getAtividades = async () => {
             const todasAtividades = await pegaTodasAtividades();
@@ -27,20 +32,18 @@ function App() {
         getAtividades();
     }, [])
 
-    const addAtividades = async (ativ) => 
-    {
+    const addAtividades = async (ativ) => {
         handleAtividadeModal();
         const response = await api.post('atividade', ativ);
         setAtividades([...atividades, response.data]);
     }
 
-    function cancelarAtividade() {
+    const cancelarAtividade = () => {
         setAtividade({ id: 0 });
         handleAtividadeModal();
     }
 
-    const atualizaAtividade = async (ativ) =>
-    {
+    const atualizaAtividade = async (ativ) => {
         handleAtividadeModal();
         const response = await api.put(`atividade/${ativ.id}`, ativ);
         const { id } = response.data;
@@ -48,8 +51,7 @@ function App() {
         setAtividade({ id: 0 });
     }
 
-    const deletarAtividade = async (id) =>
-    {
+    const deletarAtividade = async (id) => {
         if (await api.delete(`atividade/${id}`))
         {
             const atividadesFiltradas = atividades.filter(atividade => atividade.id != id);
@@ -57,7 +59,7 @@ function App() {
         }
     }
 
-    function pegarAtividade(id) {
+    const pegarAtividade = (id) => {
         const atividade = atividades.filter(atividade => atividade.id == id);
         setAtividade(atividade[0]);
         handleAtividadeModal();
@@ -67,7 +69,7 @@ function App() {
         <>
             <div className="d-flex justify-content-between align-items-end mt-2 pb-3 border-bottom border-2">
                 <h2 className="m-0 p-0">Atividade {atividade.id !== 0 ? atividade.id : ''}</h2>
-                <Button variant="outline-secondery" onClick={handleAtividadeModal}>
+                <Button variant="outline-secondery" onClick={novaAtividade}>
                     <i className="fas fa-plus "></i>
                 </Button>
             </div>
