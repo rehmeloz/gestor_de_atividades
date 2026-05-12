@@ -9,10 +9,13 @@ import Modal from 'react-bootstrap/Modal'
 
 function App() {
     const [showAtividadeModal, setShowAtividadeModal] = useState(false);
+    const [smShowConfirmModal, setSmShowConfirmModal] = useState(false);
     const [atividades, setAtividades] = useState([]);
     const [atividade, setAtividade] = useState({ id: 0 });
 
     const handleAtividadeModal = () => setShowAtividadeModal(!showAtividadeModal);
+
+    const handleConfirmModal = () => setSmShowConfirmModal(!smShowConfirmModal);
 
     const pegaTodasAtividades = async () => {
         const response = await api.get('atividade');
@@ -76,8 +79,8 @@ function App() {
  
             <AtividadeLista
                 atividades={atividades}
-                deletarAtividade={deletarAtividade}
                 pegarAtividade={pegarAtividade}
+                handleConfirmModal={handleConfirmModal}
             />
 
             <Modal show={showAtividadeModal} onHide={handleAtividadeModal}>
@@ -95,6 +98,27 @@ function App() {
                         atividades={atividades}
                     />
                 </Modal.Body>
+            </Modal>
+
+            <Modal size='sm' show={smShowConfirmModal} onHide={handleConfirmModal}>
+                <Modal.Header closeButton>
+                    <Modal.Title>
+                        Excluindo Atividade{' '} {atividade.id !== 0 ? atividade.id : ''}
+                    </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    Tem certeza que deseja excluir a atividade {atividade.id}?
+                </Modal.Body>
+                <Modal.Footer>
+                    <button className='btn btn-outline-success me-2' onClick={() => deletarAtividade(atividade.id)}>
+                        <i className='fas fa-check me-2'></i>
+                        Sim
+                    </button>
+                    <button className='btn btn-danger me-2' onClick={() => handleConfirmModal}>
+                        <i className='fas fa-times me-2'></i>
+                        Não
+                    </button>
+                </Modal.Footer>
             </Modal>
       
         </>
