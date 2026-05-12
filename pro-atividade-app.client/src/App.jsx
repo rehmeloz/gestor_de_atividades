@@ -28,17 +28,20 @@ function App() {
     }, [])
 
     const addAtividades = async (ativ) => 
-    { 
+    {
+        handleAtividadeModal();
         const response = await api.post('atividade', ativ);
         setAtividades([...atividades, response.data]);
     }
 
     function cancelarAtividade() {
         setAtividade({ id: 0 });
+        handleAtividadeModal();
     }
 
     const atualizaAtividade = async (ativ) =>
     {
+        handleAtividadeModal();
         const response = await api.put(`atividade/${ativ.id}`, ativ);
         const { id } = response.data;
         setAtividades(atividades.map(item => item.id === id ? response.data : item));
