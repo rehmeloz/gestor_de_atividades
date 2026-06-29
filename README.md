@@ -1,6 +1,6 @@
 # 📋 Gestor de Atividades
 
-Um sistema de gerenciamento de atividades com operações **CRUD**, desenvolvido com uma arquitetura moderna separando frontend e backend.
+Sistema de gerenciamento de atividades com operações **CRUD**, desenvolvido com uma arquitetura moderna separando frontend e backend.
 
 ## 🚀 Tecnologias Utilizadas
 
