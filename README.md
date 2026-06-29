@@ -10,6 +10,8 @@ Sistema de gerenciamento de atividades com operações **CRUD**, desenvolvido co
 
 ### Backend
 - **C#** — Linguagem principal da API
+- **.NET** — Ecossistema utilizado na API
+- **ASP.NET Core** — Framework utilizado na API
 - **Entity Framework Core (EF Core)** — ORM para acesso e gerenciamento do banco de dados SqlLite
 
 ## ✨ Funcionalidades
