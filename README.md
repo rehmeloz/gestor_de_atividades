@@ -16,7 +16,4 @@ Sistema de gerenciamento de atividades com operações **CRUD**, desenvolvido co
 
 ## ✨ Funcionalidades
 
-- ✅ **Criar** novas atividades
-- 📄 **Listar** todas as atividades cadastradas
-- ✏️ **Editar** atividades existentes
-- 🗑️ **Deletar** atividades
+- **CRUD** funcional (Criar, editar, listar e excluir)
